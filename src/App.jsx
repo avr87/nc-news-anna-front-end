@@ -27,7 +27,16 @@ function App() {
         />
         <Route
           path="/articles"
-          element={<Articles articles={articles} setArticles={setArticles} />}
+          element={
+            <Articles
+              articles={articles}
+              setArticles={setArticles}
+              topic={topic}
+              setTopic={setTopic}
+              selectedTopic={selectedTopic}
+              setSelectedTopic={setSelectedTopic}
+            />
+          }
         />
       </Routes>
     </div>

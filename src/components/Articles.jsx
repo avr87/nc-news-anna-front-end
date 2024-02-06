@@ -3,7 +3,14 @@ import { getArticles } from "../api/api";
 import ArticleCard from "./ArticleCard";
 import Header from "./Header";
 
-export default function Articles({ articles, setArticles }) {
+export default function Articles({
+  topic,
+  setTopic,
+  selectedTopic,
+  setSelectedTopic,
+  articles,
+  setArticles,
+}) {
   useEffect(() => {
     getArticles().then((data) => {
       setArticles(data.articles);
@@ -11,7 +18,12 @@ export default function Articles({ articles, setArticles }) {
   }, []);
   return (
     <>
-      <Header />
+      <Header
+        topic={topic}
+        setTopic={setTopic}
+        selectedTopic={selectedTopic}
+        setSelectedTopic={setSelectedTopic}
+      />
       <section>
         <div className="container text-center preview-articles">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2">

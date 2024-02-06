@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTopics } from "../api/api";
 
-export default function Header({topic,setTopic, selectedTopic, setSelectedTopic}) {
+export default function Header({topic, setTopic, selectedTopic, setSelectedTopic}) {
   
   useEffect(() => {
     getTopics().then((data) => {
@@ -14,7 +14,6 @@ export default function Header({topic,setTopic, selectedTopic, setSelectedTopic}
     setSelectedTopic(event.target.text);
   };
 
-  
   return (
     <header>
       <nav className="navbar bg-body-tertiary">
