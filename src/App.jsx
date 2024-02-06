@@ -1,20 +1,36 @@
 import React, { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import ArticlesList from "./components/ArticlesList";
+import Home from "./components/Home";
 import { Routes, Route } from "react-router-dom";
-const cors = require("cors");
-
-app.use(cors());
+import Articles from "./components/Articles";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [articles, setArticles] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState("");
+  const [topic, setTopic] = useState([]);
 
   return (
-    <>
-      <Header />
-      <ArticlesList />
-    </>
+    <div className="app">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              articles={articles}
+              setArticles={setArticles}
+              topic={topic}
+              setTopic={setTopic}
+              selectedTopic={selectedTopic}
+              setSelectedTopic={setSelectedTopic}
+            />
+          }
+        />
+        <Route
+          path="/articles"
+          element={<Articles articles={articles} setArticles={setArticles} />}
+        />
+      </Routes>
+    </div>
   );
 }
 

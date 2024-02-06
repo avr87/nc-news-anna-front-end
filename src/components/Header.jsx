@@ -1,9 +1,24 @@
-export default function Header() {
+import { useEffect, useState } from "react";
+import { getTopics } from "../api/api";
+
+export default function Header({topic,setTopic, selectedTopic, setSelectedTopic}) {
+  
+  useEffect(() => {
+    getTopics().then((data) => {
+      setTopic(data.topics);
+    });
+  }, []);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    setSelectedTopic(event.target.text);
+  };
+
   return (
     <header>
       <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             NC News
           </a>
           <a className="navbar-brand d-flex" href="#">
@@ -29,25 +44,24 @@ export default function Header() {
             Topics
           </a>
           <ul className="dropdown-menu">
-            <li>
-              <a className="dropdown-item" href="#">
-                Clothing
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Food
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Coding
-              </a>
-            </li>
+            {topic.map((singleTopic) => {
+              return (
+                <li key={singleTopic.slug}>
+                  <a
+                    className="dropdown-item"
+                    href=""
+                    value={singleTopic.slug}
+                    onClick={handleClick}
+                  >
+                    {singleTopic.slug}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="/articles">
             Articles
           </a>
         </li>
