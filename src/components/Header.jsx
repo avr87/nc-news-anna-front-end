@@ -14,6 +14,7 @@ export default function Header({topic,setTopic, selectedTopic, setSelectedTopic}
     setSelectedTopic(event.target.text);
   };
 
+  
   return (
     <header>
       <nav className="navbar bg-body-tertiary">
