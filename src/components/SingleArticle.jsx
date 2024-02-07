@@ -14,6 +14,7 @@ export default function SingleArticle({ isLoading, setIsLoading }) {
     });
   }, [article_id]);
 
+  
   if (isLoading) {
     return <p>Loading article....</p>;
   }
