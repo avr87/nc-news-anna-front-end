@@ -3,16 +3,20 @@ import Header from "./Header";
 import ArticlesList from "./ArticlesList";
 import {getArticles} from "../api/api"
 
-export default function Home({articles, setArticles, selectedTopic, setSelectedTopic, topic, setTopic}) {
+export default function Home({articles, setArticles, isLoading,setIsLoading}) {
+    
     useEffect(() => {
       getArticles().then((data) => {
         setArticles(data.articles);
+        setIsLoading(false)
       });
     }, []);
-
+ if (isLoading) {
+   return <p>Loading articles...</p>;
+ }
   return (
     <>
-      <Header topic={topic} setTopic={setTopic} selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic}/>
+      
       <ArticlesList articles={articles} setArticles={setArticles}/>
       
     </>

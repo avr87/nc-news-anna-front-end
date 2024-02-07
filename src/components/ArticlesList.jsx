@@ -2,12 +2,13 @@ import { getArticles } from "../api/api";
 import { useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 
-export default function ArticleList({ articles, setArticles }) {
+export default function ArticleList({ articles, setArticles, articleID, setArticleID }) {
   useEffect(() => {
     getArticles().then((data) => {
       setArticles(data.articles);
     });
   }, []);
+
   return (
     <section>
       <div className="container text-center preview-articles">
@@ -16,7 +17,11 @@ export default function ArticleList({ articles, setArticles }) {
             if (article.article_id > articles.length - 6) {
               return (
                 <div className="col" key={article.article_id}>
-                  <ArticleCard article={article} />
+                  <ArticleCard
+                    article={article}
+                    articleID={articleID}
+                    setArticleID={setArticleID}
+                  />
                 </div>
               );
             }
