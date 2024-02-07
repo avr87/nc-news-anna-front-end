@@ -4,30 +4,47 @@
   padding: 2rem;
   text-align: center;
 }
-.single-article{
+.single-article {
   display: block;
   margin: 0 auto;
   margin-top: 50px;
-  padding: 20px
+  padding: 20px;
 }
-.single-article-img{
-margin: 20px;
+.single-article-img {
+  margin: 20px;
 }
-.preview-articles{
+.preview-articles {
   margin: 50px;
 }
-.body-single-article{
+.body-single-article {
   text-align: start;
 }
 
-.list-single-article{
+.list-single-article {
   justify-items: center;
-    --bs-list-group-border-color: none;
-    --bs-list-group-border-width: none;
-    --bs-list-group-border-radius: none;
-} 
+  --bs-list-group-border-color: none;
+  --bs-list-group-border-width: none;
+  --bs-list-group-border-radius: none;
+}
+.single-article-title {
+  text-align: start;
+  padding-left: 20px;
+}
 
+.card-comment-body {
+  text-align: start;
+}
+.comment-card-header p{
+  margin-bottom: 0;
 
+}
+.comment-body{
+  display: block;
+  margin: 0 auto;
+}
+.comment-container{
+  margin-top: 50px;
+}
 
 /* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -35,11 +52,6 @@ margin: 20px;
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 } */
-
-
-
-
-
 
 /* .card {
   padding: 2em;

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getTopics } from "../api/api";
 
-export default function Header({topic, setTopic, selectedTopic, setSelectedTopic}) {
-  
+export default function Header({ selectedTopic, setSelectedTopic }) {
+  const [topic, setTopic] = useState([]);
+
   useEffect(() => {
     getTopics().then((data) => {
       setTopic(data.topics);

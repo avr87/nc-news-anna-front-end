@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
-import { getArticleByID } from "../api/api";
-import { useEffect, useState } from "react";
 
-export default function ArticleCard({ article, articleID, setArticleID }) {
-
-
+export default function ArticleCard({ article }) {
   return (
     <div className="card mb-3" style={{ width: 540 + "px" }}>
       <div className="row g-0">
