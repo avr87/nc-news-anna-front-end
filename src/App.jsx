@@ -6,10 +6,12 @@ import Articles from "./components/Articles";
 import SingleArticle from "./components/SingleArticle";
 import Header from "./components/Header";
 
+
 function App() {
   const [articles, setArticles] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
-  const [isLoading, setIsLoading] = useState(true)
+  
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <div className="app">
@@ -43,10 +45,13 @@ function App() {
         <Route
           path="/articles/:article_id"
           element={
-            <SingleArticle isLoading={isLoading} setIsLoading={setIsLoading} />
+            <SingleArticle
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+             
+            />
           }
         />
-        
       </Routes>
     </div>
   );

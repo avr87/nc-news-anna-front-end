@@ -1,24 +1,19 @@
-import { useEffect, useState } from "react";
-import { getCommentsByArticleId } from "../api/api";
 import CommentCard from "./CommentCard";
+import { useEffect } from "react";
+import { getComments } from "../api/api";
 
-export default function CommentsByArticle({
-  article_id,
-  isLoading,
-  setIsLoading,
-  comments,
-  setComments,
-}) {
+export default function ({ isLoading, setIsLoading, comments, setComments }) {
   useEffect(() => {
-    getCommentsByArticleId(article_id).then((data) => {
+    getComments().then((data) => {
+      console.log(data, "datatdatadatadata");
       setComments(data.comments);
       setIsLoading(false);
     });
-  }, [article_id]);
-  if (isLoading) {
-    return <p>Loading comments....</p>;
+  }, []);
+  console.log(comments, "commmments");
+  if(isLoading){
+    <p>Loading comments...</p>
   }
-  
   return (
     <>
       <section>

@@ -47,3 +47,14 @@ export function getCommentsByArticleId(article_id) {
       return err;
     });
 }
+
+export function patchVotesByArticleId(article_id) {
+  return myApi
+    .patch(`/articles/${article_id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return err;
+    });
+}

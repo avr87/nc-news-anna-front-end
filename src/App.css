@@ -34,18 +34,21 @@
 .card-comment-body {
   text-align: start;
 }
-.comment-card-header p{
+.comment-card-header p {
   margin-bottom: 0;
-
 }
-.comment-body{
+.comment-body {
   display: block;
   margin: 0 auto;
 }
-.comment-container{
+.comment-container {
   margin-top: 50px;
 }
-
+.vote-button {
+  --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.5rem;
+  --bs-btn-font-size: 0.75rem;
+}
 /* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }

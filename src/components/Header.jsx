@@ -66,11 +66,7 @@ export default function Header({ selectedTopic, setSelectedTopic }) {
             Articles
           </a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Comments
-          </a>
-        </li>
+      
       </ul>
     </header>
   );

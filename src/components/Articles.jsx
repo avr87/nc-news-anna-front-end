@@ -8,8 +8,6 @@ export default function Articles({
   isLoading,
   setIsLoading,
 }) {
-  const [articleID, setArticleID] = useState("");
-
   useEffect(() => {
     getArticles().then((data) => {
       setArticles(data.articles);
