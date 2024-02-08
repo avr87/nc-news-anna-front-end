@@ -1,4 +1,40 @@
-export default function AddCommentCard() {
+import { useState, useEffect } from "react";
+import { postCommentByArticleId, getUsers } from "../api/api";
+import CommentsByArticle from "./CommentsByArticle";
+
+export default function AddCommentCard({ article_id, comments, setComments }) {
+  const [userCommentInput, setUserCommentInput] = useState({
+    username: "",
+    body: "",
+  });
+  const [users, setUsers] = useState([]);
+  const handleChange = (event) => {
+    const newUserInput = event.target.value;
+    setUserCommentInput({
+      ...userCommentInput,
+      [event.target.id]: newUserInput,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const userInput = {
+      username: userCommentInput.username,
+      body: userCommentInput.body,
+    };
+
+    postCommentByArticleId(article_id, userInput).then((data) => {
+      const newComment = data.data.comment;
+      setComments((comments)=>{return[newComment, ...comments]});
+    });
+    setUserCommentInput({ username: "", body: "" });
+  };
+
+  useEffect(() => {
+    getUsers().then((data) => {
+      setUsers(data.data.users);
+    });
+  }, []);
   return (
     <>
       <div className="container add-comment-container">
@@ -8,31 +44,67 @@ export default function AddCommentCard() {
               <div className="card-header comment-card-header">
                 <h5 className="card-title">Add Comment</h5>
               </div>
-              <div className="mb-3">
-                <label htmlFor="exampleFormControlInput1" className="form-label">
-                  Username:
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="name@example.com"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="exampleFormControlTextarea1" className="form-label">
-                  Comment:
-                </label>
-                <textarea
-                  className="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                ></textarea>
-              </div>
+              <form action="submit" onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="username" className="form-label">
+                    Username:
+                  </label>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    id="username"
+                    placeholder="Enter your username"
+                    required
+                    onChange={handleChange}
+                    onBlur={(event) => {
+                      const error =
+                        document.getElementById("username_error_msg");
+                      if (event.target.value.length < 3) {
+                        error.innerText = "Please enter a username";
+                      } else {
+                        error.innerText = "";
+                      }
+                    }}
+                  >
+                    <option value="">--Please choose a username--</option>
+                    {users.map((user) => {
+                      return (
+                        <option value={user.username} key={user.username}>
+                          {user.username}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <p id="username_error_msg"></p>
+                <div className="mb-3">
+                  <label htmlFor="body" className="form-label">
+                    Comment:
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="body"
+                    rows="3"
+                    placeholder="Enter your comment"
+                    required
+                    onChange={handleChange}
+                    onBlur={(event) => {
+                      const error =
+                        document.getElementById("comment_error_msg");
+                      if (event.target.value.length < 3) {
+                        error.innerText = "Please enter a comment";
+                      } else {
+                        error.innerText = "";
+                      }
+                    }}
+                  ></textarea>
+                  <p id="comment_error_msg"></p>
+                </div>
 
-              <button className="btn btn-outline-primary">
-                <a href="#">Add Vote</a>
-              </button>
+                <button type="submit" className="btn btn-outline-primary">
+                  Add Comment
+                </button>
+              </form>
             </div>
           </div>
         </div>

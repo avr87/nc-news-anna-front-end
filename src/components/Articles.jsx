@@ -5,9 +5,10 @@ import ArticleCard from "./ArticleCard";
 export default function Articles({
   articles,
   setArticles,
-  isLoading,
-  setIsLoading,
+ 
 }) {
+
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getArticles().then((data) => {
       setArticles(data.articles);

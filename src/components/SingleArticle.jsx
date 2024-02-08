@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleByID, patchVotesByArticleId } from "../api/api";
 import CommentsByArticle from "./CommentsByArticle";
+import AddCommentCard from "./AddCommentCard";
 
-export default function SingleArticle({ isLoading, setIsLoading }) {
-  const [comments, setComments] = useState([]);
+export default function SingleArticle() {
   const [article, setArticle] = useState({});
   const [error, setError] = useState(null);
   const { article_id } = useParams();
   const [clickCount, setClickCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getArticleByID(article_id).then((articleObject) => {
@@ -29,12 +30,13 @@ export default function SingleArticle({ isLoading, setIsLoading }) {
         });
         setError("voting is not available");
       });
-if(clickCount === 0){
-    setArticle((currentArticle) => {
-      return { ...currentArticle, votes: currentArticle.votes + 1 };
-    });
-    setClickCount(1);}
-    if (clickCount === 1) {
+    if (clickCount === 0) {
+      setArticle((currentArticle) => {
+        return { ...currentArticle, votes: currentArticle.votes + 1 };
+      });
+      setClickCount(1);
+    }
+    else if (clickCount === 1) {
       setArticle((currentArticle) => {
         return { ...currentArticle, votes: currentArticle.votes - 1 };
       });
@@ -91,16 +93,20 @@ if(clickCount === 0){
           </ul>
           <div className="card-body body-single-article">
             <p className="card-text">{article.body}</p>
+            <div>
+              <a href="#add-comment" className="link-to-add-comment">
+                Add comment
+              </a>
+            </div>
           </div>
         </div>
       </article>
       <CommentsByArticle
         article_id={article_id}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        comments={comments}
-        setComments={setComments}
       />
+      <div className="add-comment-card" id="add-comment">
+        <AddCommentCard article_id={article_id} />
+      </div>
     </>
   );
 }

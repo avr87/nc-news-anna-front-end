@@ -11,7 +11,6 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
   
-  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <div className="app">
@@ -26,9 +25,7 @@ function App() {
             <Home
               articles={articles}
               setArticles={setArticles}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-            />
+              />
           }
         />
         <Route
@@ -37,8 +34,7 @@ function App() {
             <Articles
               articles={articles}
               setArticles={setArticles}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
+             
             />
           }
         />
@@ -46,8 +42,7 @@ function App() {
           path="/articles/:article_id"
           element={
             <SingleArticle
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
+            
              
             />
           }
