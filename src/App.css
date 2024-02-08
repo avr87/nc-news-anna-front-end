@@ -53,11 +53,16 @@
   display: block;
   margin: 0 auto;
   max-width: 440px;
+   margin-top: 30px;
+  margin-bottom:30px;
 
 }
 .alert-no-comment{
   display: block;
   margin: 0 auto;
+}
+.link-to-add-comment:hover{
+color:lightslategrey;
 }
 /* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);

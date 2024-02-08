@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { getCommentsByArticleId } from "../api/api";
 import CommentCard from "./CommentCard";
-import AddCommentCard from "./AddCommentCard";
 import ErrorMessage from "./ErrorMessage";
 
 export default function CommentsByArticle({
-  article_id,
-  isLoading,
-  setIsLoading,
-  comments,
-  setComments,
+  article_id
+  
 }) {
+  const [comments, setComments] = useState([]);
   const [error, setError] = useState();
+  const[isLoading, setIsLoading]= useState(true)
+  
   useEffect(() => {
     getCommentsByArticleId(article_id)
       .then((data) => {
@@ -27,7 +26,6 @@ export default function CommentsByArticle({
     return <p>Loading comments....</p>;
   }
 
-
   return (
     <>
       <section>
@@ -37,14 +35,13 @@ export default function CommentsByArticle({
               comments.map((comment) => {
                 return (
                   <div className="col" key={comment.comment_id}>
-                    <CommentCard comment={comment} />
+                    <CommentCard comment={comment} comments={comments} setComments={setComments}/>
                   </div>
                 );
               })
             ) : (
-              <div className="add-comment-card">
+              <div>
                 <ErrorMessage />
-                <AddCommentCard />
               </div>
             )}
           </div>

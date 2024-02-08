@@ -55,7 +55,28 @@ export function patchVotesByArticleId(article_id) {
       return response;
     })
     .catch((err) => {
-      console.log(err);
+      return err;
+    });
+}
+
+export function postCommentByArticleId(article_id, inputCommentObject) {
+  return myApi
+    .post(`/articles/${article_id}/comments`, inputCommentObject)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return err;
+    });
+}
+
+export function getUsers() {
+  return myApi
+    .get(`/users`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
       return err;
     });
 }
