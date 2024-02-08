@@ -49,6 +49,16 @@
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.75rem;
 }
+.add-comment-container{
+  display: block;
+  margin: 0 auto;
+  max-width: 440px;
+
+}
+.alert-no-comment{
+  display: block;
+  margin: 0 auto;
+}
 /* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }

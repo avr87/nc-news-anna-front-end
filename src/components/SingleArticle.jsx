@@ -6,7 +6,9 @@ import CommentsByArticle from "./CommentsByArticle";
 export default function SingleArticle({ isLoading, setIsLoading }) {
   const [comments, setComments] = useState([]);
   const [article, setArticle] = useState({});
+  const [error, setError] = useState(null);
   const { article_id } = useParams();
+  const [clickCount, setClickCount] = useState(0);
 
   useEffect(() => {
     getArticleByID(article_id).then((articleObject) => {
@@ -15,21 +17,29 @@ export default function SingleArticle({ isLoading, setIsLoading }) {
     });
   }, [article_id]);
 
-  const handleClick = () => {
-    console.log("clicked");
-    patchVotesByArticleId(article_id, "test")
+  const handleClick = (event) => {
+    event.preventDefault();
+    patchVotesByArticleId(article_id)
       .then(() => {
-        SetError(null);
+        setError(null);
       })
       .catch((error) => {
         setArticle((currentArticle) => {
           return { ...currentArticle, votes: currentArticle.votes - 1 };
         });
-        setError("liking not available");
+        setError("voting is not available");
       });
+if(clickCount === 0){
     setArticle((currentArticle) => {
       return { ...currentArticle, votes: currentArticle.votes + 1 };
     });
+    setClickCount(1);}
+    if (clickCount === 1) {
+      setArticle((currentArticle) => {
+        return { ...currentArticle, votes: currentArticle.votes - 1 };
+      });
+      setClickCount(0);
+    }
   };
 
   if (isLoading) {

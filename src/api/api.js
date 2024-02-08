@@ -50,11 +50,12 @@ export function getCommentsByArticleId(article_id) {
 
 export function patchVotesByArticleId(article_id) {
   return myApi
-    .patch(`/articles/${article_id}`)
+    .patch(`/articles/${article_id}`, { inc_votes: 1 })
     .then((response) => {
       return response;
     })
     .catch((err) => {
+      console.log(err);
       return err;
     });
 }
