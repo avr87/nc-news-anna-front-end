@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { postCommentByArticleId, getUsers } from "../api/api";
-import CommentsByArticle from "./CommentsByArticle";
+import { getUsers } from "../api/api";
 
-export default function AddCommentCard({ article_id, comments, setComments }) {
+export default function AddCommentCard({ addNewComment }) {
   const [userCommentInput, setUserCommentInput] = useState({
     username: "",
     body: "",
@@ -22,11 +21,7 @@ export default function AddCommentCard({ article_id, comments, setComments }) {
       username: userCommentInput.username,
       body: userCommentInput.body,
     };
-
-    postCommentByArticleId(article_id, userInput).then((data) => {
-      const newComment = data.data.comment;
-      setComments((comments)=>{return[newComment, ...comments]});
-    });
+    addNewComment(userInput);
     setUserCommentInput({ username: "", body: "" });
   };
 

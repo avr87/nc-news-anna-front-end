@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleByID, patchVotesByArticleId } from "../api/api";
 import CommentsByArticle from "./CommentsByArticle";
-import AddCommentCard from "./AddCommentCard";
+
 
 export default function SingleArticle() {
   const [article, setArticle] = useState({});
@@ -21,15 +21,6 @@ export default function SingleArticle() {
   const handleClick = (event) => {
     event.preventDefault();
     patchVotesByArticleId(article_id)
-      .then(() => {
-        setError(null);
-      })
-      .catch((error) => {
-        setArticle((currentArticle) => {
-          return { ...currentArticle, votes: currentArticle.votes - 1 };
-        });
-        setError("voting is not available");
-      });
     if (clickCount === 0) {
       setArticle((currentArticle) => {
         return { ...currentArticle, votes: currentArticle.votes + 1 };
@@ -104,9 +95,6 @@ export default function SingleArticle() {
       <CommentsByArticle
         article_id={article_id}
       />
-      <div className="add-comment-card" id="add-comment">
-        <AddCommentCard article_id={article_id} />
-      </div>
     </>
   );
 }

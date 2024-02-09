@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getCommentsByArticleId } from "../api/api";
+import { getCommentsByArticleId, postCommentByArticleId } from "../api/api";
 import CommentCard from "./CommentCard";
 import ErrorMessage from "./ErrorMessage";
+import AddCommentCard from "./AddCommentCard"
 
 export default function CommentsByArticle({
   article_id
@@ -22,6 +23,15 @@ export default function CommentsByArticle({
         setIsLoading(false);
       });
   }, [article_id]);
+
+  const addNewComment = (userInput)=>{
+     postCommentByArticleId(article_id, userInput).then((data) => {
+       const newComment = data.data.comment;
+       setComments((currentComments) => {
+         return [newComment, ...currentComments];
+       });
+     });
+  }
   if (isLoading) {
     return <p>Loading comments....</p>;
   }
@@ -35,7 +45,11 @@ export default function CommentsByArticle({
               comments.map((comment) => {
                 return (
                   <div className="col" key={comment.comment_id}>
-                    <CommentCard comment={comment} comments={comments} setComments={setComments}/>
+                    <CommentCard
+                      comment={comment}
+                      comments={comments}
+                      setComments={setComments}
+                    />
                   </div>
                 );
               })
@@ -45,6 +59,9 @@ export default function CommentsByArticle({
               </div>
             )}
           </div>
+        </div>
+        <div className="add-comment-card" id="add-comment">
+          <AddCommentCard addNewComment={addNewComment} />
         </div>
       </section>
     </>
