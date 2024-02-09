@@ -80,3 +80,12 @@ export function getUsers() {
       return err;
     });
 }
+
+export function deleteCommentByCommentId(comment_id){
+  return myApi.delete(`/comments/${comment_id}`).then((response)=>{
+    return response
+  }).catch((err)=>{
+    return err
+  })
+
+}

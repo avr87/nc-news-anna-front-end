@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getTopics } from "../api/api";
+import { UserContext } from "../context/User";
 
 export default function Header({ selectedTopic, setSelectedTopic }) {
   const [topic, setTopic] = useState([]);
-
+  const loggedInUser = useContext(UserContext);
   useEffect(() => {
     getTopics().then((data) => {
       setTopic(data.topics);
@@ -24,10 +25,10 @@ export default function Header({ selectedTopic, setSelectedTopic }) {
           </a>
           <a className="navbar-brand d-flex" href="#">
             <img
-              src="/docs/5.3/assets/brand/bootstrap-logo.svg"
-              alt="Bootstrap"
-              width="30"
-              height="24"
+              src={loggedInUser.loggedInUser.avatar_url}
+              alt={loggedInUser.loggedInUser.username}
+              width="40"
+              height="30"
             />
           </a>
         </div>
@@ -66,7 +67,6 @@ export default function Header({ selectedTopic, setSelectedTopic }) {
             Articles
           </a>
         </li>
-      
       </ul>
     </header>
   );

@@ -7,7 +7,8 @@ import SingleArticle from "./components/SingleArticle";
 import Header from "./components/Header";
 
 
-function App() {
+
+ function App() {
   const [articles, setArticles] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
   
