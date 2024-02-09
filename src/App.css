@@ -49,6 +49,12 @@
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.75rem;
 }
+.delete-button{
+   --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.5rem;
+  --bs-btn-font-size: 0.75rem;
+  color:orangered;
+}
 .add-comment-container{
   display: block;
   margin: 0 auto;

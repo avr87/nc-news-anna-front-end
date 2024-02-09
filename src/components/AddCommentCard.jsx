@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
-import { getUsers } from "../api/api";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/User"; 
+
+
 
 export default function AddCommentCard({ addNewComment }) {
   const [userCommentInput, setUserCommentInput] = useState({
     username: "",
     body: "",
   });
-  const [users, setUsers] = useState([]);
+  const loggedInUser = useContext(UserContext);
+
   const handleChange = (event) => {
     const newUserInput = event.target.value;
     setUserCommentInput({
@@ -25,13 +28,10 @@ export default function AddCommentCard({ addNewComment }) {
     setUserCommentInput({ username: "", body: "" });
   };
 
-  useEffect(() => {
-    getUsers().then((data) => {
-      setUsers(data.data.users);
-    });
-  }, []);
+ 
   return (
     <>
+   
       <div className="container add-comment-container">
         <div className="card border-light" style={{ width: 440 + "px" }}>
           <div className="row g-0 h-100">
@@ -62,13 +62,16 @@ export default function AddCommentCard({ addNewComment }) {
                     }}
                   >
                     <option value="">--Please choose a username--</option>
-                    {users.map((user) => {
-                      return (
-                        <option value={user.username} key={user.username}>
-                          {user.username}
-                        </option>
-                      );
-                    })}
+                    {/* {users.map((user) => {
+                      return ( */}
+                    <option
+                      value={loggedInUser.loggedInUser.username}
+                      key={loggedInUser.loggedInUser.username}
+                    >
+                      {loggedInUser.loggedInUser.username}
+                    </option>
+                    {/* );
+                    })} */}
                   </select>
                 </div>
                 <p id="username_error_msg"></p>

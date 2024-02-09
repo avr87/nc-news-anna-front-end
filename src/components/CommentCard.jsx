@@ -1,4 +1,14 @@
-export default function CommentCard({ comment }) {
+import { useContext } from "react";
+import { UserContext } from "../context/User";
+
+
+export default function CommentCard({ comment, deleteComment }) {
+  const loggedInUser = useContext(UserContext);
+const handleClick = (event)=>{
+  event.preventDefault()
+  deleteComment(comment.comment_id)
+}
+
   return (
     <>
       <div className="card border-light" style={{ width: 440 + "px" }}>
@@ -9,10 +19,15 @@ export default function CommentCard({ comment }) {
               <p className="card-votes">Votes: {comment.votes} </p>
             </div>
             <p className="card-comment-body">{comment.body}</p>
-
-            <button className="btn btn-outline-primary">
-              <a href="#">Add Vote</a>
-            </button>
+            {loggedInUser.loggedInUser.username === comment.author ? (
+              <button type="button"className="btn btn-outline-danger delete-button" onClick={handleClick}>
+                Delete Comment
+              </button>
+            ) : (
+              <button className="btn btn-outline-primary vote-button">
+                <a href="#">Vote</a>
+              </button>
+            )}
           </div>
         </div>
       </div>
