@@ -24,12 +24,12 @@ function App() {
           element={<Articles articles={articles} setArticles={setArticles} />}
         />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
-        {/* <Route
+        <Route
           path="/articles/:topic"
           element={
             <ArticlesByTopics articles={articles} setArticles={setArticles} />
           }
-        ></Route> */}
+        ></Route>
       </Routes>
     </div>
   );

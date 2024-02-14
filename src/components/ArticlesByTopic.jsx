@@ -1,5 +1,6 @@
-import { useParams, useState } from "react";
+import { useState } from "react";
 import ArticleCard from "./ArticleCard";
+
 
 export default function setArticles({ articles, setArticles }) {
 

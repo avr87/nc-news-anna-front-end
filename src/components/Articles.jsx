@@ -1,31 +1,32 @@
-import { useEffect, useState, useParams } from "react";
+import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
 import ArticleCard from "./ArticleCard";
 import Topics from "./Topics";
+import { useParams } from "react-router-dom";
 
 export default function Articles({ articles, setArticles }) {
   const [isLoading, setIsLoading] = useState(true);
   const { topic } = useParams();
 
   useEffect(() => {
-    getArticles().then((data) => {
-      if (topic) {
-        setArticles((currentArticles) => {
-          return currentArticles.filter((article) => {
-            return article.topic === selectedTopic;
-          });
-        });
-      } else {
-        setArticles(data.articles);
-      }
-      setIsLoading(false);
-    });
+    getArticles()
+      .then((data) => {
+        if (!topic) {
+          setArticles(data.articles);
+        } else {
+          articlesByTopic(topic);
+        }
+      })
+      .catch((error) => {
+        setError(error);
+        setIsLoading(false);
+      });
   }, []);
 
-  const articlesByTopic = (selectedTopic) => {
+  const articlesByTopic = () => {
     setArticles((currentArticles) => {
       return currentArticles.filter((article) => {
-        return article.topic === selectedTopic;
+        return article.topic === topic;
       });
     });
   };
