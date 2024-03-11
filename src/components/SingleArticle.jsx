@@ -3,13 +3,12 @@ import { useParams } from "react-router-dom";
 import { getArticleByID, patchVotesByArticleId } from "../api/api";
 import CommentsByArticle from "./CommentsByArticle";
 
-
 export default function SingleArticle() {
   const [article, setArticle] = useState({});
   const [error, setError] = useState(null);
   const { article_id } = useParams();
   const [clickCount, setClickCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getArticleByID(article_id).then((articleObject) => {
@@ -20,14 +19,13 @@ export default function SingleArticle() {
 
   const handleClick = (event) => {
     event.preventDefault();
-    patchVotesByArticleId(article_id)
+    patchVotesByArticleId(article_id);
     if (clickCount === 0) {
       setArticle((currentArticle) => {
         return { ...currentArticle, votes: currentArticle.votes + 1 };
       });
       setClickCount(1);
-    }
-    else if (clickCount === 1) {
+    } else if (clickCount === 1) {
       setArticle((currentArticle) => {
         return { ...currentArticle, votes: currentArticle.votes - 1 };
       });
@@ -44,13 +42,13 @@ export default function SingleArticle() {
       <article>
         <div
           className="card mb-3 single-article "
-          style={{ width: 600 + "px" }}
+          
         >
           <img
             src={article.article_img_url}
             className="card-img-top single-article-img"
             alt={article.topic}
-            style={{ width: 400 + "px" }}
+            
           />
           <h5 className="card-title single-article-title">{article.title}</h5>
           <ul className="list-group list-group-horizontal list-single-article">
@@ -92,9 +90,7 @@ export default function SingleArticle() {
           </div>
         </div>
       </article>
-      <CommentsByArticle
-        article_id={article_id}
-      />
+      <CommentsByArticle article_id={article_id} />
     </>
   );
 }
