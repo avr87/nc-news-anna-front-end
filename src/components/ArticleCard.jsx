@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 export default function ArticleCard({ article }) {
   return (
-    <div className="card mb-3" style={{ width: 540 + "px" }}>
+    <div className="card mb-3">
       <div className="row g-0">
         <div className="col-md-4">
           <img
             src={article.article_img_url}
-            className="img-fluid rounded-start"
+            className="img-fluid article-card-pic"
             alt="picture of article"
           />
           <p className="card-topic">{article.topic}</p>

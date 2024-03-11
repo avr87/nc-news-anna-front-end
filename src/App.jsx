@@ -6,7 +6,7 @@ import Articles from "./components/Articles";
 import SingleArticle from "./components/SingleArticle";
 import Header from "./components/Header";
 // import Topics from "./components/Topics";
-import ArticlesByTopics from "./components/ArticlesByTopic"
+
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -25,10 +25,8 @@ function App() {
         />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route
-          path="/articles/:topic"
-          element={
-            <ArticlesByTopics articles={articles} setArticles={setArticles} />
-          }
+          path="/articles/?topic=:topic"
+          element={<Articles articles={articles} setArticles={setArticles} />}
         ></Route>
       </Routes>
     </div>

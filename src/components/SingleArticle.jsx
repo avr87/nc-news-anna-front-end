@@ -42,13 +42,13 @@ export default function SingleArticle() {
       <article>
         <div
           className="card mb-3 single-article "
-          style={{ width: 600 + "px" }}
+          
         >
           <img
             src={article.article_img_url}
             className="card-img-top single-article-img"
             alt={article.topic}
-            style={{ width: 400 + "px" }}
+            
           />
           <h5 className="card-title single-article-title">{article.title}</h5>
           <ul className="list-group list-group-horizontal list-single-article">

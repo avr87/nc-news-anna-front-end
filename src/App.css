@@ -1,20 +1,36 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 100%;
+
   text-align: center;
 }
+nav.navbar.bg-body-tertiary {
+  padding: 20px 20px 20px 20px;
+  background-color: white !important;
+}
+.container-fluid {
+  background-color: #f8f9fa;
+}
+.section {
+  display: flex;
+  justify-content: center;
+}
+.article-card-pic {
+  padding: 20px 10px 5px 10px;
+}
 .single-article {
+  width: 60%;
   display: block;
   margin: 0 auto;
   margin-top: 50px;
   padding: 20px;
 }
 .single-article-img {
-  margin: 20px;
+  margin: 10px 5px 25px 5px;
+  width: 55%;
+  border-radius: 5px;
 }
 .preview-articles {
-  margin: 50px;
+  margin-top: 50px;
 }
 .body-single-article {
   text-align: start;
@@ -49,26 +65,25 @@
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.75rem;
 }
-.delete-button{
-   --bs-btn-padding-y: 0.25rem;
+.delete-button {
+  --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.75rem;
-  color:orangered;
+  color: orangered;
 }
-.add-comment-container{
+.add-comment-container {
   display: block;
   margin: 0 auto;
   max-width: 440px;
-   margin-top: 30px;
-  margin-bottom:30px;
-
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-.alert-no-comment{
+.alert-no-comment {
   display: block;
   margin: 0 auto;
 }
-.link-to-add-comment:hover{
-color:lightslategrey;
+.link-to-add-comment:hover {
+  color: lightslategrey;
 }
 /* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);

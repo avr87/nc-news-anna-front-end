@@ -4,9 +4,10 @@ const myApi = axios.create({
   baseURL: `https://anna-nc-news-project.onrender.com/api`,
 });
 
-export function getArticles() {
+export function getArticles(topic, sort_by, order) {
+  const params = { topic: topic, sort_by: sort_by, order: order };
   return myApi
-    .get(`/articles`)
+    .get(`/articles`, { params })
     .then((response) => {
       return response.data;
     })
@@ -81,11 +82,14 @@ export function getUsers() {
     });
 }
 
-export function deleteCommentByCommentId(comment_id){
-  return myApi.delete(`/comments/${comment_id}`).then((response)=>{
-    return response
-  }).catch((err)=>{
-    return err
-  })
-
+export function deleteCommentByCommentId(comment_id) {
+  return myApi
+    .delete(`/comments/${comment_id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return err;
+    });
 }
+

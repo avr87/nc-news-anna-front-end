@@ -28,7 +28,7 @@ export default function Topics() {
             return (
               <li key={singleTopic.slug}>
                 <Link
-                  to={`/articles/${singleTopic.slug}`}
+                  to={`/articles/?topic=${singleTopic.slug}`}
                   className="dropdown-item"
                   value={singleTopic.slug}
                 >
