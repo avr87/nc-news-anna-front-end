@@ -33,7 +33,7 @@ export default function AddCommentCard({ addNewComment }) {
     <>
    
       <div className="container add-comment-container">
-        <div className="card border-light" style={{ width: 440 + "px" }}>
+        <div className="card border-light">
           <div className="row g-0 h-100">
             <div className="card-body comment-body">
               <div className="card-header comment-card-header">

@@ -59,6 +59,7 @@ nav.navbar.bg-body-tertiary {
 }
 .comment-container {
   margin-top: 50px;
+  width: 60%;
 }
 .vote-button {
   --bs-btn-padding-y: 0.25rem;
@@ -99,3 +100,26 @@ nav.navbar.bg-body-tertiary {
 .read-the-docs {
   color: #888;
 } */
+
+@media (max-width: 735px) {
+  .list-single-article {
+    display: block;
+  }
+
+  .list-single-article li {
+    padding: 4px 16px;
+  }
+  section.col {
+    display: block;
+    margin: 0 auto;
+  }
+  .single-article {
+    width: 90%;
+  }
+  .comment-container {
+    width: 90%;
+  }
+  .add-comment-container {
+    width: 90%;
+  }
+}

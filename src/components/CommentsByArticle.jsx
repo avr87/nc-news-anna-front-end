@@ -51,7 +51,7 @@ export default function CommentsByArticle({ article_id }) {
     <>
       <section>
         <div className="container comment-container">
-          <div className="row row-cols-0.5 row-spacing">
+          <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
             {comments ? (
               comments.map((comment) => {
                 return (
